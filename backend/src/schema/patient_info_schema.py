@@ -35,9 +35,6 @@ HER2_type = Literal[
 HER2_treatment = Literal
 
 class PatientInfo(BaseModel):
-    first_name: str
-    last_name: str
-    patronymic: str
     age: int
     stage: Literal["1", "2", "3", "4"]
     menopausal_status: bool
