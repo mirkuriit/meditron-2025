@@ -3,10 +3,7 @@ import pandas as pd
 import pickle
 import json
 
-"""
-Пример класса для использования в бэкенде
-Можно скопировать этот код в ваш backend файл
-"""
+### послание от бекендера: заберите у мльщика курсор
 
 class CoxModelPredictor:
     """Класс для предсказания выживаемости пациентов с раком груди"""
@@ -21,24 +18,20 @@ class CoxModelPredictor:
         self.cox_models = {}
         self.metadata = None
         
-        # Загружаем все компоненты
         self._load_components()
     
     def _load_components(self):
         """Загружает все сохраненные компоненты"""
-        # 1. Загружаем Label Encoders
         encoders_path = self.models_dir / "label_encoders.pkl"
         with open(encoders_path, 'rb') as f:
             self.label_encoders = pickle.load(f)
         print(f"✓ Загружено {len(self.label_encoders)} label encoders")
         
-        # 2. Загружаем метаданные
         metadata_path = self.models_dir / "models_metadata.json"
         with open(metadata_path, 'r', encoding='utf-8') as f:
             self.metadata = json.load(f)
         print(f"✓ Загружены метаданные для {len(self.metadata)} стадий")
         
-        # 3. Загружаем модели для каждой стадии
         for stage in [1, 2, 3, 4]:
             model_path = self.models_dir / f"cox_model_stage_{stage}.pkl"
             with open(model_path, 'rb') as f:
@@ -55,18 +48,13 @@ class CoxModelPredictor:
         Returns:
             DataFrame с закодированными признаками
         """
-        # Создаем DataFrame из словаря
         df = pd.DataFrame([patient_data])
         
-        # Применяем Label Encoders к категориальным признакам
         for col, encoder in self.label_encoders.items():
             if col in df.columns:
-                # Обрабатываем Unknown значения
                 df[col] = df[col].fillna("Unknown")
                 
-                # Проверяем, есть ли значение в classes_
                 if df[col].iloc[0] not in encoder.classes_:
-                    # Если значения нет, используем первый класс (или можно добавить обработку)
                     print(f"⚠️  Неизвестное значение '{df[col].iloc[0]}' для {col}, используем '{encoder.classes_[0]}'")
                     df[col] = encoder.classes_[0]
                 
@@ -88,19 +76,14 @@ class CoxModelPredictor:
         if stage not in [1, 2, 3, 4]:
             raise ValueError(f"Stage должна быть 1, 2, 3 или 4. Получено: {stage}")
         
-        # Препроцессинг
         processed_data = self.preprocess_data(patient_data)
         
-        # Получаем модель для нужной стадии
         model = self.cox_models[stage]
         
-        # Получаем список нужных признаков из метаданных
         required_features = self.metadata[f'stage_{stage}']['feature_columns']
         
-        # Выбираем только нужные признаки
         X = processed_data[required_features]
         
-        # Предсказания
         predicted_survival = model.predict_expectation(X).values[0]
         partial_hazard = model.predict_partial_hazard(X).values[0]
         
