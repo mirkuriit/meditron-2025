@@ -23,7 +23,7 @@ from typing import Optional
 
 class PatientInfo(BaseModel):
     first_name: str
-    last_anme: str
+    last_name: str
     patronymic: str
     age: int
     menopausal_status: bool
