@@ -57,6 +57,11 @@ class PatientInfo(BaseModel):
     has_metastasis: bool
     tumor_grade: int
     performance_status: int
+    met_bone: bool
+    met_brain: bool
+    met_liver: bool
+    met_lung: bool
+    met_none: bool
 
 
     @field_validator('tumor_size_before')
