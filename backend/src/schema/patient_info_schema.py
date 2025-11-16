@@ -85,7 +85,3 @@ class PatientInfo(BaseModel):
             raise ValueError('performance_status must be in [0..4] range')
         return value
 
-
-
-
-

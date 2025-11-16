@@ -96,5 +96,5 @@ class CoxModelPredictor:
             'model_mae': self.metadata[f'stage_{stage}']['mae']
         }
 
-global_predictor = CoxModelPredictor(models_dir="src/ml/cox_models")
+predictor = CoxModelPredictor(models_dir="src/ml/cox_models")
 
