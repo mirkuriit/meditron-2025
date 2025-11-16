@@ -54,7 +54,6 @@ class PatientInfo(BaseModel):
     harmon_treatment: harmon_type
     tumor_size_before: int
     positive_lymph_nodes: int
-    has_metastasis: bool
     tumor_grade: int
     performance_status: int
     met_bone: bool
