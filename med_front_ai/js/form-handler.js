@@ -178,8 +178,6 @@ const FormHandler = {
     
     validateForm() {
         const requiredFields = [
-            { field: document.getElementById('firstName'), name: 'Имя' },
-            { field: document.getElementById('lastName'), name: 'Фамилия' },
             { field: document.getElementById('age'), name: 'Возраст' },
             { field: document.getElementById('stage'), name: 'Стадия РМЖ' },
             { field: document.getElementById('ki67Level'), name: 'Уровень Ki-67' },
@@ -283,9 +281,6 @@ const FormHandler = {
         const her2Status = document.getElementById('her2Status').checked;
 
         return {
-            first_name: document.getElementById('firstName').value.trim(),
-            last_name: document.getElementById('lastName').value.trim(),
-            patronymic: document.getElementById('patronymic').value.trim(),
             age: parseInt(document.getElementById('age').value, 10),
             stage: document.getElementById('stage').value,
             menopausal_status: menopausalStatusSelected ? menopausalStatusSelected.value === 'true' : false,
@@ -315,7 +310,7 @@ const FormHandler = {
     clearForm() {
         // Текстовые поля и селекты
         const fieldsToClear = [
-            'firstName', 'lastName', 'patronymic', 'age', 'stage',
+            'age', 'stage',
             'ki67Level', 'tumorSizeBefore', 'chemotherapyRegimen', 'hormoneTherapy'
         ];
         

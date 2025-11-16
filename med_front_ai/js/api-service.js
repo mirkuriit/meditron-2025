@@ -8,7 +8,7 @@ const ApiService = {
 
         try {
             const [survivalResponse, tumorResponse] = await Promise.all([
-                fetch('/api/reports/survival_month', {
+                fetch('http://89.169.174.45:8010/reports/survival_month', {
                     method: 'POST',
                     headers: {
                         'accept': 'application/json',
@@ -16,7 +16,7 @@ const ApiService = {
                     },
                     body: JSON.stringify(patientData)
                 }),
-                fetch('/api/reports/tumor_dynamic', {
+                fetch('http://89.169.174.45:8010/reports/tumor_dynamic', {
                     method: 'POST',
                     headers: {
                         'accept': 'application/json',
@@ -29,8 +29,23 @@ const ApiService = {
             console.log('📥 Статус ответа выживаемости:', survivalResponse.status);
             console.log('📥 Статус ответа динамики:', tumorResponse.status);
 
-            const survivalData = survivalResponse.ok ? await survivalResponse.json() : null;
-            const tumorData = tumorResponse.ok ? await tumorResponse.json() : null;
+            let survivalData = null;
+            let tumorData = null;
+
+            if (survivalResponse.ok) {
+                survivalData = await survivalResponse.json();
+                console.log('📊 Данные выживаемости:', survivalData);
+            } else {
+                console.warn('⚠️ Ошибка получения данных выживаемости:', survivalResponse.status);
+            }
+
+            if (tumorResponse.ok) {
+                tumorData = await tumorResponse.json();
+                console.log('📊 Данные динамики опухоли:', tumorData);
+            } else {
+                const errorText = await tumorResponse.text();
+                console.warn('⚠️ Ошибка получения данных динамики:', tumorResponse.status, errorText);
+            }
 
             if (!survivalData && !tumorData) {
                 throw new Error('Бэкенд не вернул данные для отображения');

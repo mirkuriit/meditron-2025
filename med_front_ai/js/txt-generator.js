@@ -31,7 +31,6 @@ function saveToTXT() {
     // Данные пациента
     txtContent += 'ДАННЫЕ ПАЦИЕНТА:\n';
     txtContent += '-'.repeat(30) + '\n';
-    txtContent += `ФИО: ${patientData.last_name} ${patientData.first_name} ${patientData.patronymic}\n`;
     txtContent += `Возраст: ${patientData.age} лет\n`;
     txtContent += `Стадия: ${patientData.stage}\n`;
     txtContent += `Ki-67: ${patientData.ki67_level}%\n`;
@@ -83,7 +82,7 @@ function saveToTXT() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `medical_report_${patientData.last_name}_${new Date().toISOString().split('T')[0]}.txt`;
+    link.download = `medical_report_${new Date().toISOString().split('T')[0]}.txt`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
