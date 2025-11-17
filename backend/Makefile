@@ -21,14 +21,8 @@ ifeq ($(filter help, $(MAKECMDGOALS)),)
 export $(shell sed '/^#/d; s/=.*//' .env)
 endif
 
-mongo: ## Run MongoDB in Docker
-	docker run -d \
-	--name mongodb \
-	-p 27017:27017 \
-	-v mongo_data:/data/db \
-	-e MONGO_INITDB_ROOT_USERNAME=root \
-	-e MONGO_INITDB_ROOT_PASSWORD=example \
-	mongo
+run:
+	uv run hypercorn src.main:fastapi_app --bind "0.0.0.0:${FASTAPI_PORT}" --access-logfile - --log-level info
 
 
 
