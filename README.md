@@ -26,7 +26,7 @@ set +a
 ```  
   
 
-build & run 
+__build & run__
 ```shell
 cd backend
 docker build -t meditron-api .
@@ -41,9 +41,45 @@ docker run --rm -p 8010:8010 -e FASTAPI_PORT=8010 meditron-api
 
 (host = localhost) если собрано локально
 
+## Frontend
+Стек используемых технологий:
+- html
+- css
+- javascript
+- nginx - веб-сервер для раздачи статических файлов
+- Docker - инстурмент для контейнеризации и изолированной развертки приложения
 
-## Сборка
+## Сборка и запуск
+
+Склонировать репозиторий  
+```shell
+git clone git@github.com:mirkuriit/meditron-2025.git
 ```
-docker build -t mirkuriit/meditron-api:1 .
-docker run --rm -p 8006:8006 -e FASTAPI_PORT=8006  mirkuriit/meditron-api:1
+
 ```
+cd med_front_ai
+```
+
+__build & run__ example
+```
+docker build -t meditron-frontend .
+docker run -p 8000:80 meditron-frontend
+```
+
+## CORS 
+
+Для корректного взаимодействия между бекендом и фронтендом часто приходится настраивать cors. В проекте они находятся по пути
+`meditron-2025/backend/src/main.py`
+
+```Python
+
+...
+fastapi_app.add_middleware(
+    CORSMiddleware,
+    ### Разрешенные фронтенду адреса
+    allow_origins=['http://localhost:8000', 'http://localhost:63342', 'http://localhost:5500', 'http://89.169.174.45:8000'],
+    ...
+)
+...
+```
+
