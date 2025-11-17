@@ -83,8 +83,6 @@ fastapi_app.add_middleware(
 ...
 ```
 
-
-
 ## ML 
 
 Стек используемых технологий
@@ -93,6 +91,12 @@ fastapi_app.add_middleware(
 - pandas - библиотека для анализа и предобработки данных
 - matplotlib - библиотека для отрисовки графиков
 
+Используемая модель - __CoxPHFitter__ (Регрессионная модель кокса)
+
 ### Pipline
 
-EDA -> DATA PREPROCESSING -> 
+#### EDA -> DATA PREPROCESSING -> KaplCoxPHFitteranMeierFitter
+
+## Math Models
+
+см [README.md](https://github.com/mirkuriit/meditron-2025/blob/main/math_model/README.md)
