@@ -1,0 +1,102 @@
+{
+  "stage_1": {
+    "feature_columns": [
+      "age",
+      "menopausal_status",
+      "family_history",
+      "er_status",
+      "pr_status",
+      "her2_status",
+      "brca_mutation",
+      "ki67_level",
+      "treatment",
+      "tumor_size_before",
+      "performance_status",
+      "tumor_grade",
+      "positive_lymph_nodes",
+      "tnbc"
+    ],
+    "n_features": 14,
+    "mae": 19.00702962792483,
+    "c_index": 0.5174114331723028,
+    "train_size": 800,
+    "test_size": 200,
+    "penalizer": 0.1,
+    "created_at": "2025-11-16 16:06:03"
+  },
+  "stage_2": {
+    "feature_columns": [
+      "age",
+      "menopausal_status",
+      "family_history",
+      "er_status",
+      "pr_status",
+      "her2_status",
+      "brca_mutation",
+      "ki67_level",
+      "treatment",
+      "tumor_size_before",
+      "performance_status",
+      "tumor_grade",
+      "positive_lymph_nodes",
+      "tnbc"
+    ],
+    "n_features": 14,
+    "mae": 19.905339900110572,
+    "c_index": 0.5065915266176915,
+    "train_size": 800,
+    "test_size": 200,
+    "penalizer": 0.1,
+    "created_at": "2025-11-16 16:06:03"
+  },
+  "stage_3": {
+    "feature_columns": [
+      "age",
+      "menopausal_status",
+      "family_history",
+      "er_status",
+      "pr_status",
+      "her2_status",
+      "brca_mutation",
+      "ki67_level",
+      "treatment",
+      "tumor_size_before",
+      "performance_status",
+      "tumor_grade",
+      "positive_lymph_nodes",
+      "tnbc"
+    ],
+    "n_features": 14,
+    "mae": 23.030532620270577,
+    "c_index": 0.5171043364523594,
+    "train_size": 800,
+    "test_size": 200,
+    "penalizer": 0.1,
+    "created_at": "2025-11-16 16:06:03"
+  },
+  "stage_4": {
+    "feature_columns": [
+      "age",
+      "menopausal_status",
+      "family_history",
+      "er_status",
+      "pr_status",
+      "her2_status",
+      "brca_mutation",
+      "ki67_level",
+      "treatment",
+      "tumor_size_before",
+      "performance_status",
+      "tumor_grade",
+      "positive_lymph_nodes",
+      "tnbc"
+    ],
+    "n_features": 14,
+    "mae": 25.204908519507445,
+    "c_index": 0.5129804789696116,
+    "train_size": 800,
+    "test_size": 200,
+    "penalizer": 0.1,
+    "created_at": "2025-11-16 16:06:03"
+  }
+}

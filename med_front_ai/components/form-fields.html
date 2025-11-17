@@ -1,0 +1,215 @@
+<!-- Основные данные пациента -->
+<div class="form-row">
+    <div class="form-column">
+        <label for="age">Возраст:</label>
+        <input type="number" id="age" class="form-input" min="0" max="120" placeholder="Возраст пациента">
+    </div>
+</div>
+
+<!-- Стадия и основные показатели -->
+<div class="section-title">Основные медицинские показатели</div>
+
+<div class="form-row">
+    <div class="form-column">
+        <label for="stage">Стадия РМЖ:</label>
+        <select id="stage" class="form-select">
+            <option value="">Выберите стадию</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        
+        <label for="menopausalStatus">Менопаузальный статус:</label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="menopausalYes" name="menopausalStatus" value="true">
+                <label for="menopausalYes">Менопауза наступила</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="menopausalNo" name="menopausalStatus" value="false">
+                <label for="menopausalNo">Менопауза не наступила</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Биомаркеры -->
+<div class="section-title">Биомаркеры</div>
+
+<div class="form-row">
+    <div class="form-column">
+        <div class="checkbox-group">
+            <input type="checkbox" id="familyHistory">
+            <label for="familyHistory">Семейный анамнез РМЖ</label>
+        </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="erStatus">
+            <label for="erStatus">Рецепторы к эстрогену (ER+)</label>
+        </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="prStatus">
+            <label for="prStatus">Рецепторы к прогестерону (PR+)</label>
+        </div>
+    </div>
+    
+    <div class="form-column">
+        <div class="checkbox-group">
+            <input type="checkbox" id="her2Status">
+            <label for="her2Status">HER2 положительный</label>
+        </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="brcaMutation">
+            <label for="brcaMutation">Мутация в генах BRCA1/2</label>
+        </div>
+    </div>
+</div>
+
+<!-- TNBC предупреждение -->
+<div id="tnbcWarning" class="warning" style="display: none;">
+    <strong>Трижды негативная опухоль (TNBC)</strong>
+</div>
+
+<!-- Гормональная терапия предупреждение -->
+<div id="hormoneWarning" class="warning" style="display: none;">
+    <strong>Гормональная терапия не показана</strong>
+</div>
+
+<!-- Гормональная терапия -->
+<div id="hormoneSection" class="hormone-section" style="display: none;">
+    <h4>Гормональная терапия</h4>
+    <select id="hormoneTherapy" class="form-select">
+        <option value="">Выберите гормональную терапию</option>
+        <!-- Опции будут заполнены динамически -->
+    </select>
+</div>
+
+<!-- Хирургическое вмешательство -->
+<div class="section-title">Лечение</div>
+
+<div class="form-group">
+    <label>Хирургическое вмешательство:</label>
+    <div class="radio-group">
+        <div class="radio-option">
+            <input type="radio" id="surgeryYes" name="surgeryType" value="true">
+            <label for="surgeryYes">Проводилось</label>
+        </div>
+        <div class="radio-option">
+            <input type="radio" id="surgeryNo" name="surgeryType" value="false">
+            <label for="surgeryNo">Не проводилось</label>
+        </div>
+    </div>
+</div>
+
+<!-- Режим химиотерапии -->
+<div id="chemotherapySection" class="chemotherapy-section">
+    <h4>Режим химиотерапии</h4>
+    <select id="chemotherapyRegimen" class="form-select">
+        <option value="">Выберите режим химиотерапии</option>
+        <!-- Опции будут заполнены динамически -->
+    </select>
+</div>
+
+<!-- Числовые показатели -->
+<div class="form-row">
+    <div class="form-column">
+        <label for="ki67Level">Уровень Ki-67 (%):</label>
+        <input type="number" id="ki67Level" class="form-input" step="0.1" min="0" max="100" placeholder="Например: 8.6">
+    </div>
+</div>
+
+<!-- Данные опухоли -->
+<div class="section-title">Характеристики опухоли</div>
+
+<div class="form-row">
+    <div class="form-column">
+        <label for="tumorSizeBefore">Размер опухоли до лечения (cм):</label>
+        <input type="number" id="tumorSizeBefore" class="form-input" step="0.1" min="0" max="500" placeholder="Например: 2.5">
+        
+        <label for="positiveLymphNodes">Количество пораженных лимфоузлов:</label>
+        <div class="number-input-group">
+            <button type="button" class="number-btn" id="decreaseLymphNodes">-</button>
+            <input type="number" id="positiveLymphNodes" class="form-input number-input" min="0" max="15" value="0">
+            <button type="button" class="number-btn" id="increaseLymphNodes">+</button>
+        </div>
+    </div>
+    
+    <div class="form-column">
+        <label>Степень злокачественности опухоли:</label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="grade1" name="tumorGrade" value="1">
+                <label for="grade1">1 (G1)</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="grade2" name="tumorGrade" value="2">
+                <label for="grade2">2 (G2)</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="grade3" name="tumorGrade" value="3">
+                <label for="grade3">3 (G3)</label>
+            </div>
+        </div>
+        
+        <label>Функциональный статус по шкале ECOG:</label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="ecog0" name="performanceStatus" value="0">
+                <label for="ecog0">0</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="ecog1" name="performanceStatus" value="1">
+                <label for="ecog1">1</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="ecog2" name="performanceStatus" value="2">
+                <label for="ecog2">2</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="ecog3" name="performanceStatus" value="3">
+                <label for="ecog3">3</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="ecog4" name="performanceStatus" value="4">
+                <label for="ecog4">4</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Метастазы -->
+<div class="section-title">Локализация метастазов</div>
+
+<div class="form-row">
+    <div class="form-column">
+        <div class="checkbox-group">
+            <input type="checkbox" id="metBone">
+            <label for="metBone">Кости</label>
+        </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="metBrain">
+            <label for="metBrain">Мозг</label>
+        </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="metLiver">
+            <label for="metLiver">Печень</label>
+        </div>
+    </div>
+    
+    <div class="form-column">
+        <div class="checkbox-group">
+            <input type="checkbox" id="metLung">
+            <label for="metLung">Легкие</label>
+        </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="metNone">
+            <label for="metNone">Нет метастазов</label>
+        </div>
+    </div>
+</div>
