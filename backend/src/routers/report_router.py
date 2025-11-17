@@ -47,5 +47,5 @@ async def get_tumor_dynamic(
     }
     results = run_simulation(params=params)
     #DoseGraphReport()
-    logger.info(results)
+    #logger.info(results)
     return results

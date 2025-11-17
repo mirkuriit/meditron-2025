@@ -48,7 +48,7 @@ class PatientInfo(BaseModel):
     harmon: bool
     surgery_type: bool
     HER2_treatment: HER2_type
-    harmon_treatment: harmon_type
+    harmon_treatment: harmon_type | None
     tumor_size_before: int
     positive_lymph_nodes: int
     tumor_grade: int
