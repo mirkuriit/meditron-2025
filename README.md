@@ -1,5 +1,6 @@
 # meditron-2025
-Sechenov x MISIS
+Sechenov x MISIS  
+[презентация питча](https://drive.google.com/file/d/1oeSqsRRrZ76KHr9KoB1VvJHNrwNxctNA/view?usp=sharing)
 
 Сервис для оптимизации дозировок препаратов противоопухолеовой терапии рака молочной железы.
 
